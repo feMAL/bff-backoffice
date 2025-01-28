@@ -7,12 +7,12 @@ import {
   import { ConfigService } from '@nestjs/config';
   import { Request } from 'express';
   import { HttpService } from '@nestjs/axios';
+import config from '../../config/external-servers/configuration'
+
 
   @Injectable()
   export class AccessValidationGuard implements CanActivate {
     constructor(
-      private readonly configService: ConfigService,
-      private readonly httpClient: HttpService,
     ) {}
   
     async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -28,14 +28,14 @@ import {
   
     async validation({ headers }: Request): Promise<any> {
       try {
-        const { acvUrl } =
-          this.configService.get('services');
-        const authorization = headers['authorization'];
+        const { url } =
+          config().services.authorizator;
 
+        const authorization = headers['authorization'];
           
         /* istanbul ignore next */
         
-        const res = await fetch(`${acvUrl}/auth/validate`,{
+        const res = await fetch(`${url}/auth/validate`,{
           headers: {
             authorization
           }

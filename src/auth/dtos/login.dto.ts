@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsAlphanumeric, IsEmail, IsString, MaxLength, MinLength } from '@nestjs/class-validator'
+import { IsEmail, IsString, MaxLength, MinLength } from '@nestjs/class-validator'
 
 export class LoginDto {
 
@@ -12,7 +12,7 @@ export class LoginDto {
     @IsString()
     @IsEmail()
     @ApiProperty({type: String})
-    mail: string;
+    email: string;
     
     @IsString()
     @MinLength(6)

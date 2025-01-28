@@ -17,4 +17,5 @@ export const validationSchema = Joi.object({
     APP_SWAGGER_ENABLED: Joi.boolean().required(),
     APP_SWAGGER_PATH: Joi.string().required(),
     AUTHORIZATOR_URL: Joi.string().required(),
+    BACKEND_URL: Joi.string().required(),
 })
